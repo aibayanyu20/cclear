@@ -33,13 +33,27 @@ v0.1.4 将 Desktop 功能扩展到 Windows x64 / ARM64，界面与 macOS 一致�
 
 macOS 和 Windows 均保留 Claude Code 清理功能；Linux 暂仅提供 Claude Code 清理。窗口顶部继续不展示品牌 logo 或标题。
 
-## v0.1.4 下载
+## v0.2.0 下载
 
-- [macOS 通用安装包（Apple 芯片 / Intel）](https://github.com/aibayanyu20/cclear/releases/download/v0.1.4/cclear-0.1.4-macos-universal.dmg)
-- [Windows x64 安装包](https://github.com/aibayanyu20/cclear/releases/download/v0.1.4/cclear-0.1.4-windows-amd64.exe)
-- [Windows ARM64 安装包](https://github.com/aibayanyu20/cclear/releases/download/v0.1.4/cclear-0.1.4-windows-arm64.exe)
+- [macOS 通用安装包（Apple 芯片 / Intel）](https://github.com/aibayanyu20/cclear/releases/download/v0.2.0/cclear-0.2.0-macos-universal.dmg)
+- [Windows x64 安装包](https://github.com/aibayanyu20/cclear/releases/download/v0.2.0/cclear-0.2.0-windows-amd64.exe)
+- [Windows ARM64 安装包](https://github.com/aibayanyu20/cclear/releases/download/v0.2.0/cclear-0.2.0-windows-arm64.exe)
 
-更多平台文件与更新说明见 [v0.1.4 发布页](https://github.com/aibayanyu20/cclear/releases/tag/v0.1.4)。
+更多平台文件与更新说明见 [v0.2.0 发布页](https://github.com/aibayanyu20/cclear/releases/tag/v0.2.0)。
+
+## Claude Code 环境与 IP 自动同步（v0.2.0）
+
+macOS / Windows 都在界面中点击操作，不要求用户编写命令或填写 IP：
+
+- 「环境设置」合并用户 `settings.json` 的 `env.TZ / LANG / LC_ALL`，保留其他配置；相同值不重复写入、不增加备份。支持预览和恢复最近修改，不改系统时区或语言。
+- macOS 可导入现有简单 zsh `claude` alias，并在勾选迁移、确认后备份移除原行，不重复追加。建议先迁移 alias，再同步其他地区，避免两处设置冲突。
+- 「IP 自动同步」默认自动获取公网出口 IP、地区和时区建议。优先读取 Code 代理，再检查系统静态 HTTPS 代理；手动代理与预期 IP 核对放在默认收起的高级设置。无需手动提供 IP。
+- 允许联网后，通过 ipify 与 AWS 的 IPv4 回显交叉核对，再将观察到的 IP 发送给 ipwho.is 查询时区。保存前重新检测、确认后再次核对出口；不一致或代理失败则停止，不静默绕过代理。
+- 无显式代理时只能显示当前网络出口；需主动确认 TUN/VPN 路径或通过可选预期 IP 核对后才能同步。PAC/WPAD、SOCKS-only 和分流歧义不自动猜测。
+- 语言按国家提供默认建议，多语言/未知地区保留现有语言。定位误差、域名/进程分流和 IPv6 会造成差异，不保证 Claude API 也从相同 IP 出口，不承诺“万无一失”。
+- Code 清理默认保留已保存的三个时区/语言键；取消保留则完整重置。其他认证、代理、权限等配置仍按清理范围处理，私有配置备份不随 Code 清理删除。
+
+仅用户允许并点击后才联系上述服务；不会发送 Claude Token、账号或会话。原始配置备份可能含敏感内容，保存在本机私有目录。窗口顶部仍不显示品牌 logo 或标题。
 
 ## Claude Code
 
